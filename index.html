@@ -343,6 +343,26 @@ nav.tabs button[aria-selected="true"] { background: var(--card); color: var(--re
 .lang button[aria-pressed="true"] { background: var(--cream); color: var(--red); }
 header.hero > .lang { position: absolute; left: auto; width: auto; z-index: 3; }
 header.hero .brand, header.hero .admin-badge + .lang + .brand { padding-right: 108px; }
+
+.opt { position: relative; }
+.opt .corner { position: absolute; top: -9px; right: 12px; background: var(--red); color: var(--on-dark); font-size: 11px; font-weight: 800; letter-spacing: .03em; padding: 3px 10px; border-radius: 99px; text-transform: uppercase; }
+.cargo-extra { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px 12px; border: 1.5px dashed var(--green-mid); border-radius: 12px; background: #FCFBF2; }
+.cargo-extra label { display: flex; flex-direction: column; gap: 4px; font-size: 13px; font-weight: 600; }
+.kaspi { font-size: 13px; color: var(--ink); background: var(--ok-soft); border-radius: 10px; padding: 8px 10px; margin-top: 6px; }
+.kaspi b { color: var(--red); }
+.editor { border-top: 1px dashed var(--line); padding-top: 12px; display: flex; flex-direction: column; gap: 10px; }
+.editor .thumb.gone img { opacity: .3; }
+.editor .thumb .undo { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); border: 0; border-radius: 99px; padding: 4px 10px; font-size: 12px; font-weight: 700; background: var(--card); color: var(--ink); cursor: pointer; }
+.addbtn { position: relative; display: flex; align-items: center; justify-content: center; aspect-ratio: 1; border: 1.5px dashed var(--green-mid); border-radius: 12px; color: var(--green); font-weight: 700; font-size: 13px; text-align: center; padding: 6px; cursor: pointer; background: #FCFBF2; }
+.addbtn input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.row-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.row-actions .btn { flex: 1; min-width: 140px; }
+.edited { background: #F1E5C2; color: #6E4A12; border-radius: 10px; padding: 8px 10px; font-size: 13px; font-weight: 600; }
+.hist { display: flex; flex-direction: column; gap: 6px; font-size: 13px; background: var(--cream-soft); border-radius: 10px; padding: 10px 12px; }
+.hist div { display: flex; flex-direction: column; }
+.hist small { color: var(--muted); }
+.search { width: 100%; margin-bottom: 12px; }
+.archived-badge { background: #E8E4D6; color: #5E554D; }
 </style>
 </head>
 <body>
@@ -524,53 +544,53 @@ header.hero .brand, header.hero .admin-badge + .lang + .brand { padding-right: 1
       tagline: 'Пришлите фото товара — я проверю наличие и посчитаю цену в тенге', storesLabel: 'ПОКУПАЮ В МАГАЗИНАХ КОРЕИ',
       tabNew: 'Новый заказ', tabMine: 'Мои заказы', tabRate: 'Курс',
       newTitle: 'Новый заказ', newSub: 'Добавьте одно или несколько фото — посчитаю всё одной суммой. Размер и цвет напишите ниже.',
-      s1: 'Фото товара', s1d: 'Скриншот из магазина или соцсетей', s2: 'Расчёт в тенге', s2d: 'Проверю наличие и пришлю цену', s3: 'Оплата по счёту', s3d: 'Счёт придёт на ваш номер',
+      s1: 'Фото товара', s1d: 'Скриншот из магазина или соцсетей', s2: 'Расчёт в тенге', s2d: 'Проверю наличие и пришлю цену', s3: 'Оплата в Kaspi', s3d: 'Счёт придёт в Kaspi на ваш номер',
       dropTitle: 'Добавить фото товаров', dropMore: 'Добавить ещё фото', dropHint: 'Можно выбрать сразу несколько, до {max} штук', dropCount: '{n} из {max} фото выбрано', processing: 'Обрабатываю фото…',
       needLabel: 'Что нужно?', needHint: 'Размер, цвет, количество, ссылка', needPh: 'Например: 1 — размер M, чёрный; 2 — 2 шт.',
       delivLegend: 'Способ доставки', tagExtra: 'доставка отдельно', tagFree: 'без доплаты',
       contactLabel: 'Как с вами связаться', contactHint: 'Instagram, WhatsApp или Telegram — по желанию',
       send: 'Отправить заказ', sending: 'Отправляю {n} фото…', errNoPhoto: 'Добавьте хотя бы одно фото товара', errMax: 'В одном заказе можно до {max} фото', errSend: 'Не получилось отправить, попробуйте ещё раз',
       errOpen: 'Не удалось открыть фото', errFormat: 'Один из форматов фото не поддерживается, попробуйте скриншот',
-      why1: 'Покупаю в корейских магазинах сама и проверяю товар', why2: 'Цена считается по официальному курсу Нацбанка РК на сегодня', why3: 'Работаю как ИП, оплата только по официальному счёту',
+      why1: 'Покупаю в корейских магазинах сама и проверяю товар', why2: 'Цена считается по официальному курсу Нацбанка РК на сегодня', why3: 'Работаю как ИП, оплата по официальному счёту в Kaspi',
       sentTitle: 'Заказ отправлен', sentText: 'Я посмотрю фото и пришлю расчёт. Статус и цена появятся во вкладке «Мои заказы».', sentSave: 'Сохраните ссылку, чтобы открыть заказ с другого телефона:', copy: 'Копировать', copied: 'Скопировано', copyManual: 'Выделите и скопируйте вручную', again: 'Отправить ещё один товар',
       mineTitle: 'Мои заказы', mineSub: 'Заказы, отправленные с этого телефона, появляются здесь сами. С другого телефона откройте личную ссылку заказа — её можно сохранить после отправки или попросить у меня в Instagram.',
       loading: 'Загружаю…', emptyMine: 'Заказов пока нет. Отправьте фото во вкладке «Новый заказ».', empty: 'Заказов пока нет.',
       order: 'Заказ {id}', stNew: 'Получен', stReview: 'На рассмотрении', stNa: 'Нет в наличии', stBought: 'Куплено', stAccepted: 'Подтверждён',
       photoLoading: 'Загружаю фото…', photoFail: 'Фото не загрузилось', galleryHint: '{n} фото в заказе · листайте вбок',
       deliv: 'Доставка: {t}', paidSeparately: 'оплачивается отдельно', naMany: 'К сожалению, этих товаров сейчас нет в наличии.', naOne: 'К сожалению, этого товара сейчас нет в наличии.', notQuoted: 'Расчёт ещё готовится. Загляните сюда чуть позже.',
-      price: 'Цена товара', item: 'Товар {n}', itemNa: 'нет в наличии', discount: 'скидка', sumDisc: 'Сумма со скидкой', priceDisc: 'Цена со скидкой', sumItems: 'Сумма товаров', fee: 'Мои услуги {p}%', totalKrw: 'Итого в вонах', rate: 'Курс', toPay: 'К оплате', inTenge: 'в тенге',
+      price: 'Цена товара', item: 'Товар {n}', itemNa: 'нет в наличии', discount: 'скидка', sumDisc: 'Сумма со скидкой', priceDisc: 'Цена со скидкой', sumItems: 'Сумма товаров', fee: 'Мои услуги {p}%', totalKrw: 'Итого в вонах', rate: 'Курс', toPay: 'К оплате', inTenge: 'в тенге · счёт в Kaspi', kaspiLine: 'Счёт на сумму {sum} тг придёт в Kaspi после того, как вы подтвердите заказ.', kaspiDone: 'Счёт на сумму {sum} тг выставляется в Kaspi на указанный номер телефона.',
       delivExtra: 'Доставка «{t}» оплачивается отдельно и в эту сумму не входит.', delivFree: 'Доставка: {t}, без доплаты.',
-      youConfirmed: 'Вы подтвердили заказ', invoiceTo: 'Счёт на {sum} будет выставлен на номер {phone}.', agree: 'Согласна(ен), оформить',
-      acceptTitle: 'Оформление заказа', fname: 'Имя', lname: 'Фамилия', phone: 'Номер телефона', phoneHint: 'На этот номер будет выставлен счёт', confirm: 'Подтвердить заказ', cancel: 'Отмена',
-      errFname: 'Укажите имя', errLname: 'Укажите фамилию', errPhone: 'Проверьте номер телефона, например +7 701 123 45 67', sendingShort: 'Отправляю…', thanks: 'Спасибо! Счёт придёт на ваш номер',
-      rateTitle: 'Курс валют', rateSub: 'Официальный курс Нацбанка РК, обновляется каждый день.', rateNone: 'Курс пока недоступен', updated: 'обновлено', rateToday: 'Курс сегодня: 1 ₩ = ', payIp: 'Оплата по счёту ИП',
-      others: 'и другие', othersSub: 'пришлите фото из любого магазина', noConnection: 'Нет связи с сервером, проверьте интернет'
+      youConfirmed: 'Вы подтвердили заказ', invoiceTo: 'Счёт на сумму {sum} тг будет выставлен в Kaspi на номер {phone}.', agree: 'Согласна(ен), оформить',
+      acceptTitle: 'Оформление заказа', fname: 'Имя', lname: 'Фамилия', phone: 'Номер телефона', phoneHint: 'На этот номер придёт счёт в Kaspi', confirm: 'Подтвердить заказ', cancel: 'Отмена',
+      errFname: 'Укажите имя', errLname: 'Укажите фамилию', errPhone: 'Проверьте номер телефона, например +7 701 123 45 67', sendingShort: 'Отправляю…', thanks: 'Спасибо! Счёт придёт в Kaspi на ваш номер',
+      rateTitle: 'Курс валют', rateSub: 'Официальный курс Нацбанка РК, обновляется каждый день.', rateNone: 'Курс пока недоступен', updated: 'обновлено', rateToday: 'Курс сегодня: 1 ₩ = ', payIp: 'Оплата через Kaspi · счёт от ИП',
+      others: 'и другие', editOrder: 'Изменить заказ', editTitle: 'Изменение заказа', editHint: 'Уберите лишние фото, добавьте новые или допишите комментарий.', editQuotedHint: 'После изменения я пересчитаю заказ заново.', addPhoto: '+ Добавить фото', saveChanges: 'Сохранить изменения', editSaved: 'Заказ изменён', keepOne: 'В заказе должно остаться хотя бы одно фото', restore: 'Вернуть', removed: 'убрано', editAccepted: 'Чтобы изменить подтверждённый заказ, напишите мне в Instagram.', pickup: 'Пункт выдачи', cargoPay: 'Оплата карго', payNow: 'Сразу', payOnReceipt: 'При получении', saving: 'Сохраняю…', othersSub: 'пришлите фото из любого магазина', noConnection: 'Нет связи с сервером, проверьте интернет'
     },
     kk: {
       tagline: 'Тауардың суретін жіберіңіз — бар-жоғын тексеріп, бағасын теңгемен есептеймін', storesLabel: 'КОРЕЯ ДҮКЕНДЕРІНЕН САТЫП АЛАМЫН',
       tabNew: 'Жаңа тапсырыс', tabMine: 'Тапсырыстарым', tabRate: 'Бағам',
       newTitle: 'Жаңа тапсырыс', newSub: 'Бір немесе бірнеше сурет қосыңыз — барлығын бір сомамен есептеймін. Өлшемі мен түсін төменде жазыңыз.',
-      s1: 'Тауар суреті', s1d: 'Дүкеннен немесе әлеуметтік желіден скриншот', s2: 'Теңгемен есеп', s2d: 'Бар-жоғын тексеріп, бағасын жіберемін', s3: 'Шот бойынша төлем', s3d: 'Шот сіздің нөміріңізге келеді',
+      s1: 'Тауар суреті', s1d: 'Дүкеннен немесе әлеуметтік желіден скриншот', s2: 'Теңгемен есеп', s2d: 'Бар-жоғын тексеріп, бағасын жіберемін', s3: 'Kaspi арқылы төлем', s3d: 'Шот нөміріңізге Kaspi-ге келеді',
       dropTitle: 'Тауар суреттерін қосу', dropMore: 'Тағы сурет қосу', dropHint: 'Бірден бірнешеуін таңдауға болады, {max}-ға дейін', dropCount: '{max} суреттің {n}-і таңдалды', processing: 'Суреттер өңделуде…',
       needLabel: 'Не керек?', needHint: 'Өлшемі, түсі, саны, сілтеме', needPh: 'Мысалы: 1 — M өлшемі, қара; 2 — 2 дана',
       delivLegend: 'Жеткізу тәсілі', tagExtra: 'жеткізу бөлек', tagFree: 'қосымша ақысыз',
       contactLabel: 'Сізбен қалай байланысуға болады', contactHint: 'Instagram, WhatsApp немесе Telegram — қалауыңызша',
       send: 'Тапсырысты жіберу', sending: '{n} сурет жіберілуде…', errNoPhoto: 'Кемінде бір тауар суретін қосыңыз', errMax: 'Бір тапсырыста {max} суретке дейін болады', errSend: 'Жіберу сәтсіз болды, қайталап көріңіз',
       errOpen: 'Суретті ашу мүмкін болмады', errFormat: 'Суреттің бір форматы қолдау таппайды, скриншот жіберіп көріңіз',
-      why1: 'Корея дүкендерінен өзім сатып алып, тауарды тексеремін', why2: 'Баға ҚР Ұлттық банкінің бүгінгі ресми бағамы бойынша есептеледі', why3: 'ЖК ретінде жұмыс істеймін, төлем тек ресми шот арқылы',
+      why1: 'Корея дүкендерінен өзім сатып алып, тауарды тексеремін', why2: 'Баға ҚР Ұлттық банкінің бүгінгі ресми бағамы бойынша есептеледі', why3: 'ЖК ретінде жұмыс істеймін, төлем Kaspi-дегі ресми шот арқылы',
       sentTitle: 'Тапсырыс жіберілді', sentText: 'Суреттерді қарап, есебін жіберемін. Мәртебесі мен бағасы «Тапсырыстарым» бөлімінде шығады.', sentSave: 'Тапсырысты басқа телефоннан ашу үшін сілтемені сақтаңыз:', copy: 'Көшіру', copied: 'Көшірілді', copyManual: 'Белгілеп, қолмен көшіріңіз', again: 'Тағы бір тапсырыс жіберу',
       mineTitle: 'Тапсырыстарым', mineSub: 'Осы телефоннан жіберілген тапсырыстар осында өзі шығады. Басқа телефоннан тапсырыстың жеке сілтемесін ашыңыз — оны жібергеннен кейін сақтауға немесе менен Instagram арқылы сұрауға болады.',
       loading: 'Жүктелуде…', emptyMine: 'Әзірге тапсырыс жоқ. Суретті «Жаңа тапсырыс» бөлімінде жіберіңіз.', empty: 'Әзірге тапсырыс жоқ.',
       order: '{id} тапсырысы', stNew: 'Қабылданды', stReview: 'Қаралуда', stNa: 'Қолда жоқ', stBought: 'Сатып алынды', stAccepted: 'Расталды',
       photoLoading: 'Сурет жүктелуде…', photoFail: 'Сурет жүктелмеді', galleryHint: 'Тапсырыста {n} сурет · жанына сырғытыңыз',
       deliv: 'Жеткізу: {t}', paidSeparately: 'бөлек төленеді', naMany: 'Өкінішке қарай, бұл тауарлар қазір қолда жоқ.', naOne: 'Өкінішке қарай, бұл тауар қазір қолда жоқ.', notQuoted: 'Есеп әлі дайындалуда. Сәл кейінірек қараңыз.',
-      price: 'Тауар бағасы', item: '{n}-тауар', itemNa: 'қолда жоқ', discount: 'жеңілдік', sumDisc: 'Жеңілдікпен сома', priceDisc: 'Жеңілдікпен баға', sumItems: 'Тауарлар сомасы', fee: 'Менің қызметім {p}%', totalKrw: 'Барлығы вонмен', rate: 'Бағам', toPay: 'Төлеуге', inTenge: 'теңгемен',
+      price: 'Тауар бағасы', item: '{n}-тауар', itemNa: 'қолда жоқ', discount: 'жеңілдік', sumDisc: 'Жеңілдікпен сома', priceDisc: 'Жеңілдікпен баға', sumItems: 'Тауарлар сомасы', fee: 'Менің қызметім {p}%', totalKrw: 'Барлығы вонмен', rate: 'Бағам', toPay: 'Төлеуге', inTenge: 'теңгемен · Kaspi шоты', kaspiLine: '{sum} тг сомасына шот тапсырысты растағаннан кейін Kaspi-ге келеді.', kaspiDone: '{sum} тг сомасына шот көрсетілген телефон нөміріне Kaspi-ге жіберіледі.',
       delivExtra: '«{t}» жеткізуі бөлек төленеді және бұл сомаға кірмейді.', delivFree: 'Жеткізу: {t}, қосымша ақысыз.',
-      youConfirmed: 'Сіз тапсырысты растадыңыз', invoiceTo: '{sum} сомасына шот {phone} нөміріне жіберіледі.', agree: 'Келісемін, рәсімдеу',
-      acceptTitle: 'Тапсырысты рәсімдеу', fname: 'Аты', lname: 'Тегі', phone: 'Телефон нөмірі', phoneHint: 'Шот осы нөмірге жіберіледі', confirm: 'Тапсырысты растау', cancel: 'Болдырмау',
-      errFname: 'Атыңызды жазыңыз', errLname: 'Тегіңізді жазыңыз', errPhone: 'Телефон нөмірін тексеріңіз, мысалы +7 701 123 45 67', sendingShort: 'Жіберілуде…', thanks: 'Рақмет! Шот нөміріңізге келеді',
-      rateTitle: 'Валюта бағамы', rateSub: 'ҚР Ұлттық банкінің ресми бағамы, күн сайын жаңартылады.', rateNone: 'Бағам әзірге қолжетімсіз', updated: 'жаңартылды', rateToday: 'Бүгінгі бағам: 1 ₩ = ', payIp: 'ЖК шоты арқылы төлем',
-      others: 'және басқалар', othersSub: 'кез келген дүкеннен сурет жіберіңіз', noConnection: 'Сервермен байланыс жоқ, интернетті тексеріңіз'
+      youConfirmed: 'Сіз тапсырысты растадыңыз', invoiceTo: '{sum} тг сомасына шот {phone} нөміріне Kaspi-ге жіберіледі.', agree: 'Келісемін, рәсімдеу',
+      acceptTitle: 'Тапсырысты рәсімдеу', fname: 'Аты', lname: 'Тегі', phone: 'Телефон нөмірі', phoneHint: 'Kaspi шоты осы нөмірге келеді', confirm: 'Тапсырысты растау', cancel: 'Болдырмау',
+      errFname: 'Атыңызды жазыңыз', errLname: 'Тегіңізді жазыңыз', errPhone: 'Телефон нөмірін тексеріңіз, мысалы +7 701 123 45 67', sendingShort: 'Жіберілуде…', thanks: 'Рақмет! Шот нөміріңізге Kaspi-ге келеді',
+      rateTitle: 'Валюта бағамы', rateSub: 'ҚР Ұлттық банкінің ресми бағамы, күн сайын жаңартылады.', rateNone: 'Бағам әзірге қолжетімсіз', updated: 'жаңартылды', rateToday: 'Бүгінгі бағам: 1 ₩ = ', payIp: 'Kaspi арқылы төлем · ЖК шоты',
+      others: 'және басқалар', editOrder: 'Тапсырысты өзгерту', editTitle: 'Тапсырысты өзгерту', editHint: 'Артық суреттерді алып тастаңыз, жаңасын қосыңыз немесе пікір жазыңыз.', editQuotedHint: 'Өзгерткеннен кейін тапсырысты қайта есептеймін.', addPhoto: '+ Сурет қосу', saveChanges: 'Өзгерістерді сақтау', editSaved: 'Тапсырыс өзгертілді', keepOne: 'Тапсырыста кемінде бір сурет қалуы керек', restore: 'Қайтару', removed: 'алынды', editAccepted: 'Расталған тапсырысты өзгерту үшін маған Instagram-ға жазыңыз.', pickup: 'Беру пункті', cargoPay: 'Карго төлемі', payNow: 'Бірден', payOnReceipt: 'Алған кезде', saving: 'Сақталуда…', othersSub: 'кез келген дүкеннен сурет жіберіңіз', noConnection: 'Сервермен байланыс жоқ, интернетті тексеріңіз'
     }
   };
   var memLang = '';
@@ -625,6 +645,7 @@ header.hero .brand, header.hero .admin-badge + .lang + .brand { padding-right: 1
   function orderCalc(o) {
     var c = calcItems(itemsOf(o), o.feePct, o.rate);
     if (o.totalKrw) { c.totalKrw = o.totalKrw; c.totalKzt = o.totalKzt; }
+    c.accepted = !!o.accepted;
     return c;
   }
 
@@ -646,6 +667,9 @@ header.hero .brand, header.hero .admin-badge + .lang + .brand { padding-right: 1
     var l = el('span'); l.appendChild(document.createTextNode(t('toPay'))); l.appendChild(el('small', '', t('inTenge')));
     tot.appendChild(l); tot.appendChild(el('b', '', tg(c.totalKzt)));
     b.appendChild(tot);
+    var kl = el('div', 'kaspi'); var parts = t(c.accepted ? 'kaspiDone' : 'kaspiLine', { sum: '\u0001' }).split('\u0001');
+    kl.appendChild(document.createTextNode(parts[0])); kl.appendChild(el('b', '', fmt(c.totalKzt))); kl.appendChild(document.createTextNode(parts[1] || ''));
+    b.appendChild(kl);
     if (delivery) {
       var d = delivOf(delivery);
       b.appendChild(el('div', 'extra', d.extra ? t('delivExtra', { t: dTitle(d) }) : t('delivFree', { t: dTitle(d).toLowerCase() })));
@@ -656,8 +680,8 @@ header.hero .brand, header.hero .admin-badge + .lang + .brand { padding-right: 1
   /* ---------- Доставка и магазины ---------- */
   var DELIV_DEFAULT = [
     { id: 'self', title: 'Привезу сама', note: 'Лечу в Казахстан в декабре и привезу заказ лично', extra: false, title_kk: 'Өзім әкелемін', note_kk: 'Желтоқсанда Қазақстанға ұшамын, тапсырысты өзім әкелемін' },
-    { id: 'post', title: 'Почта', note: 'Стоимость пересылки оплачивается отдельно', extra: true, title_kk: 'Пошта', note_kk: 'Жіберу құны бөлек төленеді' },
-    { id: 'cargo', title: 'Карго', note: 'Стоимость карго оплачивается отдельно, считается по весу', extra: true, title_kk: 'Карго', note_kk: 'Карго құны бөлек төленеді, салмағы бойынша есептеледі' }
+    { id: 'cargo', title: 'Карго', note: '1 кг — 5 000 ₸. Можно оплатить сразу или при получении. Пункты выдачи: Астана и Алматы.', extra: true, title_kk: 'Карго', note_kk: '1 кг — 5 000 ₸. Бірден немесе алған кезде төлеуге болады. Беру пункттері: Астана және Алматы.', badge: 'Выгодно', badge_kk: 'Тиімді', pickups: ['Астана', 'Алматы'] },
+    { id: 'post', title: 'Почта', note: 'Цена по тарифу почты. Оплатить при получении нельзя — доставка оплачивается сразу.', extra: true, title_kk: 'Пошта', note_kk: 'Баға пошта тарифі бойынша. Алған кезде төлеуге болмайды — жеткізу бірден төленеді.' }
   ];
   function dTitle(d) { return L(d.title, d.title_kk); }
   function applyLang() {
@@ -671,30 +695,50 @@ header.hero .brand, header.hero .admin-badge + .lang + .brand { padding-right: 1
   }
   function setLang(l) {
     LANG = l; memLang = l; try { localStorage.setItem('kr_lang', l); } catch (e) { }
-    var sel = checkedVal('delivery');
-    applyLang(); renderSeller(INFO); renderRate(INFO.rate || {}); renderStores(); renderDelivOpts($('delivOpts'), 'delivery', sel); renderThumbs();
+    var sel = checkedVal('delivery'), selX = delivExtra('delivery');
+    applyLang(); renderSeller(INFO); renderRate(INFO.rate || {}); renderStores(); renderDelivOpts($('delivOpts'), 'delivery', sel, selX); renderThumbs();
     if (!$('sendBtn').disabled) $('sendBtn').textContent = t('send');
     buildTabs(false, current);
   }
   Array.prototype.forEach.call(document.querySelectorAll('#langSwitch button'), function (b) { b.onclick = function () { setLang(b.getAttribute('data-lang')); }; });
   function deliveries() { return (INFO.deliveries && INFO.deliveries.length) ? INFO.deliveries : DELIV_DEFAULT; }
   function delivOf(id) { var l = deliveries(); return l.filter(function (d) { return d.id === id; })[0] || l[0]; }
-  function renderDelivOpts(box, name, selected) {
-    box.textContent = '';
+  function renderDelivOpts(box, name, selected, extra) {
+    box.textContent = ''; extra = extra || {};
+    var extraBox = el('div', 'cargo-extra'); extraBox.id = name + '-extra';
+    function syncExtra() { var d = delivOf(checkedVal(name)); extraBox.hidden = !(d && d.pickups); }
     deliveries().forEach(function (d, i) {
       var lb = el('label', 'opt'), r = el('input'); r.type = 'radio'; r.name = name; r.value = d.id; r.id = name + '-' + d.id;
       r.checked = selected ? d.id === selected : i === 0;
+      r.onchange = syncExtra;
       lb.htmlFor = r.id; lb.appendChild(r);
+      if (d.badge) lb.appendChild(el('span', 'corner', L(d.badge, d.badge_kk)));
       var tx = el('div'), bt = el('b', '', dTitle(d));
       bt.appendChild(el('span', 'tag' + (d.extra ? '' : ' free'), d.extra ? t('tagExtra') : t('tagFree')));
       tx.appendChild(bt); tx.appendChild(el('small', '', L(d.note, d.note_kk))); lb.appendChild(tx);
       box.appendChild(lb);
+      if (d.pickups && !extraBox.childNodes.length) {
+        var l1 = el('label'), s1 = el('select'); s1.id = name + '-pickup';
+        d.pickups.forEach(function (c) { var op = el('option', '', c); op.value = c; if (extra.pickup === c) op.selected = true; s1.appendChild(op); });
+        l1.htmlFor = s1.id; l1.appendChild(document.createTextNode(t('pickup'))); l1.appendChild(s1);
+        var l2 = el('label'), s2 = el('select'); s2.id = name + '-cargoPay';
+        [['now', t('payNow')], ['onReceipt', t('payOnReceipt')]].forEach(function (x) { var op = el('option', '', x[1]); op.value = x[0]; if (extra.cargoPay === x[0]) op.selected = true; s2.appendChild(op); });
+        l2.htmlFor = s2.id; l2.appendChild(document.createTextNode(t('cargoPay'))); l2.appendChild(s2);
+        extraBox.appendChild(l1); extraBox.appendChild(l2);
+      }
     });
+    if (extraBox.childNodes.length) box.appendChild(extraBox);
+    syncExtra();
+  }
+  function delivExtra(name) {
+    var d = delivOf(checkedVal(name)), p = $(name + '-pickup'), c = $(name + '-cargoPay');
+    return d && d.pickups && p && c ? { pickup: p.value, cargoPay: c.value } : {};
   }
   function checkedVal(name) { var r = document.querySelector('input[name="' + name + '"]:checked'); return r ? r.value : ''; }
   function delivLine(o) {
     var d = delivOf(o.delivery), w = el('div', 'deliv-line');
-    w.appendChild(el('span', 'pill', t('deliv', { t: dTitle(d) })));
+    var extraTxt = (o.pickup ? ' · ' + o.pickup : '') + (o.cargoPay ? ' · ' + (o.cargoPay === 'onReceipt' ? t('payOnReceipt') : t('payNow')).toLowerCase() : '');
+    w.appendChild(el('span', 'pill', t('deliv', { t: dTitle(d) }) + extraTxt));
     if (d.extra) w.appendChild(el('span', 'sub', t('paidSeparately')));
     return w;
   }
@@ -854,7 +898,7 @@ header.hero .brand, header.hero .admin-badge + .lang + .brand { padding-right: 1
     ev.preventDefault();
     if (!photos.length) { $('newErr').textContent = t('errNoPhoto'); $('newErr').hidden = false; return; }
     var btn = $('sendBtn'); btn.disabled = true; btn.textContent = t('sending', { n: photos.length });
-    call('submitOrder', { photos: photos, comment: $('comment').value, contact: $('contact').value, delivery: checkedVal('delivery') }).then(function (r) {
+    call('submitOrder', (function () { var x = delivExtra('delivery'); return { photos: photos, comment: $('comment').value, contact: $('contact').value, delivery: checkedVal('delivery'), pickup: x.pickup, cargoPay: x.cargoPay }; })()).then(function (r) {
       addToken(r.token);
       $('newForm').hidden = true; $('sentBox').hidden = false;
       $('sentLink').value = siteBase() + '?order=' + r.token;
@@ -890,26 +934,87 @@ header.hero .brand, header.hero .admin-badge + .lang + .brand { padding-right: 1
     b.appendChild(top);
     if (o.comment) b.appendChild(el('div', 'comment', o.comment));
     b.appendChild(delivLine(o));
-    if (o.status === 'na') { b.appendChild(el('div', 'note', o.photoCount > 1 ? t('naMany') : t('naOne'))); return c; }
-    if (!o.quoted) { b.appendChild(el('div', 'sub', t('notQuoted'))); return c; }
+    if (o.status === 'na') { b.appendChild(el('div', 'note', o.photoCount > 1 ? t('naMany') : t('naOne'))); if (!o.archived && !o.accepted) addEditButton(b, o); return c; }
+    if (!o.quoted) { b.appendChild(el('div', 'sub', t('notQuoted'))); if (!o.archived) addEditButton(b, o); return c; }
     var calcd = orderCalc(o);
     b.appendChild(billNode(calcd, o.delivery));
     if (o.accepted) {
       var ok = el('div', 'okbox'); ok.appendChild(el('b', '', t('youConfirmed')));
-      ok.appendChild(el('span', '', t('invoiceTo', { sum: tg(o.totalKzt), phone: o.phone })));
+      setTimeout(function () { b.appendChild(el('div', 'sub', t('editAccepted'))); }, 0);
+      ok.appendChild(el('span', '', t('invoiceTo', { sum: fmt(o.totalKzt), phone: o.phone })));
       b.appendChild(ok);
     } else {
       var btn = el('button', 'btn', t('agree')); btn.type = 'button';
       btn.onclick = function () { openAccept(o, calcd); };
       b.appendChild(btn);
     }
+    if (!o.accepted && !o.archived) addEditButton(b, o);
     return c;
+  }
+
+  function addEditButton(b, o) {
+    var eb = el('button', 'btn ghost', t('editOrder')); eb.type = 'button';
+    eb.onclick = function () { eb.hidden = true; b.appendChild(orderEditor(o, function () { ed.remove(); eb.hidden = false; })); var ed = b.lastChild; };
+    b.appendChild(eb);
+  }
+
+  function orderEditor(o, onClose) {
+    var box = el('div', 'editor'), removed = [], added = [];
+    box.appendChild(el('b', '', t('editTitle')));
+    box.appendChild(el('div', 'sub', t('editHint') + (o.quoted ? ' ' + t('editQuotedHint') : '')));
+    var grid = el('div', 'thumbs'); box.appendChild(grid);
+    var cm = el('textarea'); cm.id = 'edit-' + o.id; cm.maxLength = 1000; cm.value = o.comment || ''; cm.placeholder = t('needPh');
+    var cl = el('label', 'field'); cl.htmlFor = cm.id; cl.appendChild(document.createTextNode(t('needLabel'))); cl.appendChild(cm); box.appendChild(cl);
+    var err = el('div', 'err'); err.hidden = true; box.appendChild(err);
+    var act = el('div', 'row-actions');
+    var save = el('button', 'btn', t('saveChanges')); save.type = 'button';
+    var cancel = el('button', 'btn ghost', t('cancel')); cancel.type = 'button'; cancel.onclick = onClose;
+    act.appendChild(save); act.appendChild(cancel); box.appendChild(act);
+    function total() { return (o.photoCount || 1) - removed.length + added.length; }
+    function draw() {
+      grid.textContent = '';
+      for (var i = 0; i < (o.photoCount || 1); i++) (function (i) {
+        var d = el('div', 'thumb' + (removed.indexOf(i) >= 0 ? ' gone' : '')), img = el('img'); img.alt = 'Фото ' + (i + 1);
+        photoSrc(o, i).then(function (src) { img.src = src; }, function () { });
+        d.appendChild(img); d.appendChild(el('span', 'badge', String(i + 1)));
+        if (removed.indexOf(i) >= 0) {
+          var u = el('button', 'undo', t('restore')); u.type = 'button'; u.onclick = function () { removed.splice(removed.indexOf(i), 1); draw(); }; d.appendChild(u);
+        } else {
+          var x = el('button', 'x', '×'); x.type = 'button'; x.setAttribute('aria-label', 'Убрать фото ' + (i + 1));
+          x.onclick = function () { if (total() <= 1) { err.textContent = t('keepOne'); err.hidden = false; return; } removed.push(i); err.hidden = true; draw(); }; d.appendChild(x);
+        }
+        grid.appendChild(d);
+      })(i);
+      added.forEach(function (src, j) {
+        var d = el('div', 'thumb'), img = el('img'); img.src = src; img.alt = 'Новое фото'; d.appendChild(img);
+        var x = el('button', 'x', '×'); x.type = 'button'; x.onclick = function () { if (total() <= 1) { err.textContent = t('keepOne'); err.hidden = false; return; } added.splice(j, 1); draw(); }; d.appendChild(x);
+        grid.appendChild(d);
+      });
+      if (total() < MAXP) {
+        var ab = el('label', 'addbtn', t('addPhoto')), inp = el('input'); inp.type = 'file'; inp.accept = 'image/*'; inp.multiple = true; inp.setAttribute('aria-label', t('addPhoto'));
+        inp.onchange = function () {
+          var files = Array.prototype.slice.call(inp.files || []).slice(0, MAXP - total());
+          Promise.all(files.map(compress)).then(function (list) { added = added.concat(list); err.hidden = true; draw(); }, function (e) { err.textContent = e.message; err.hidden = false; });
+        };
+        ab.appendChild(inp); grid.appendChild(ab);
+      }
+    }
+    draw();
+    save.onclick = function () {
+      if (total() < 1) { err.textContent = t('keepOne'); err.hidden = false; return; }
+      save.disabled = true; save.textContent = t('saving');
+      call('clientEditOrder', o.token, { remove: removed, photos: added, comment: cm.value }).then(function () {
+        Object.keys(photoCache).forEach(function (k) { if (k.indexOf(o.id + ':') === 0) delete photoCache[k]; });
+        toast(t('editSaved')); loadMine();
+      }, function (e) { err.textContent = e.message; err.hidden = false; save.disabled = false; save.textContent = t('saveChanges'); });
+    };
+    return box;
   }
 
   var acceptFor = null;
   function openAccept(o, calcd) {
     acceptFor = o;
-    renderDelivOpts($('acceptDeliv'), 'delivery2', o.delivery);
+    renderDelivOpts($('acceptDeliv'), 'delivery2', o.delivery, { pickup: o.pickup, cargoPay: o.cargoPay });
     var holder = $('acceptBill'); holder.replaceWith(billNode(calcd));
     document.querySelector('#acceptForm .bill').id = 'acceptBill';
     $('acceptErr').hidden = true; $('acceptModal').hidden = false; setTimeout(function () { $('fName').focus(); }, 50);
@@ -924,7 +1029,7 @@ header.hero .brand, header.hero .admin-badge + .lang + .brand { padding-right: 1
     var err = !f ? t('errFname') : !l ? t('errLname') : (p.length < 10 || p.length > 12) ? t('errPhone') : '';
     if (err) { $('acceptErr').textContent = err; $('acceptErr').hidden = false; return; }
     var btn = $('acceptBtn'); btn.disabled = true; btn.textContent = t('sendingShort');
-    call('acceptOrder', acceptFor.token, f, l, $('fPhone').value, checkedVal('delivery2')).then(function () {
+    call('acceptOrder', acceptFor.token, f, l, $('fPhone').value, checkedVal('delivery2'), delivExtra('delivery2')).then(function () {
       closeAccept(); toast(t('thanks')); loadMine();
     }, function (e) { $('acceptErr').textContent = e.message; $('acceptErr').hidden = false; })
       .then(function () { btn.disabled = false; btn.textContent = t('confirm'); });
@@ -932,14 +1037,25 @@ header.hero .brand, header.hero .admin-badge + .lang + .brand { padding-right: 1
 
   /* ---------- Админ ---------- */
   var adminOrders = [], filter = 'all';
-  var FILTERS = [['all', 'Все'], ['new', 'Новые'], ['review', 'На рассмотрении'], ['bought', 'Купила'], ['na', 'Нет в наличии'], ['accepted', 'Подтверждены']];
-  function matches(o, f) { return f === 'all' || (f === 'accepted' ? o.accepted : o.status === f); }
+  var FILTERS = [['all', 'Все'], ['new', 'Новые'], ['review', 'На рассмотрении'], ['bought', 'Купила'], ['na', 'Нет в наличии'], ['accepted', 'Подтверждены'], ['archive', 'Архив']];
+  var searchQ = '';
+  function matches(o, f) {
+    if (f === 'archive') return o.archived;
+    if (o.archived) return false;
+    return f === 'all' || (f === 'accepted' ? o.accepted : o.status === f);
+  }
+  function searchHit(o) {
+    if (!searchQ) return true;
+    var q = searchQ.toLowerCase(), digits = q.replace(/\D/g, '');
+    var hay = [o.id, o.firstName, o.lastName, o.contact, o.comment].join(' ').toLowerCase();
+    return hay.indexOf(q) >= 0 || (digits.length >= 3 && String(o.phone || '').replace(/\D/g, '').indexOf(digits) >= 0);
+  }
   function renderFilters() {
     var box = $('filters'); box.textContent = '';
     FILTERS.forEach(function (f) {
       var n = adminOrders.filter(function (o) { return matches(o, f[0]); }).length;
       var b = el('button', f[0] === filter ? 'on' : '', f[1] + ' · ' + n); b.type = 'button';
-      b.onclick = function () { filter = f[0]; renderAdmin(); };
+      b.onclick = function () { filter = f[0]; searchQ = ''; renderAdmin(); };
       box.appendChild(b);
     });
   }
@@ -949,15 +1065,102 @@ header.hero .brand, header.hero .admin-badge + .lang + .brand { padding-right: 1
   }
   function renderAdmin() {
     renderFilters(); renderSummary();
-    setCount('admin', adminOrders.filter(function (o) { return o.status === 'new'; }).length);
+    setCount('admin', adminOrders.filter(function (o) { return !o.archived && o.status === 'new' && !o.quoted; }).length);
     var list = $('adminList'); list.textContent = '';
-    var shown = adminOrders.filter(function (o) { return matches(o, filter); });
+    var tools = el('div', 'stack');
+    if (filter === 'archive') {
+      var si = el('input'); si.type = 'text'; si.className = 'search'; si.id = 'archSearch'; si.placeholder = 'Поиск: имя, телефон, номер заказа'; si.value = searchQ; si.setAttribute('aria-label', 'Поиск по архиву');
+      si.oninput = function () { searchQ = si.value.trim(); var pos = si.selectionStart; renderAdmin(); var n = $('archSearch'); if (n) { n.focus(); try { n.setSelectionRange(pos, pos); } catch (e) { } } };
+      tools.appendChild(si);
+      tools.appendChild(el('div', 'sub', 'Архив хранит все заказы. Полная история изменений — в таблице «Заказы из Кореи — база», лист «История».'));
+    } else {
+      var doneN = adminOrders.filter(function (o) { return !o.archived && ((o.accepted && o.status === 'bought') || o.status === 'na'); }).length;
+      if (doneN) {
+        var ab = el('button', 'btn ghost small', 'Убрать завершённые в архив · ' + doneN); ab.type = 'button'; var armed = false;
+        ab.onclick = function () {
+          if (!armed) { armed = true; ab.textContent = 'Нажмите ещё раз, чтобы подтвердить'; setTimeout(function () { armed = false; ab.textContent = 'Убрать завершённые в архив · ' + doneN; }, 4000); return; }
+          ab.disabled = true;
+          call('adminArchiveDone', KEY).then(function (n) { toast('В архив: ' + n); loadAdmin(); }, function (e) { toast(e.message); ab.disabled = false; });
+        };
+        tools.appendChild(ab);
+      }
+    }
+    list.appendChild(tools);
+    var shown = adminOrders.filter(function (o) { return matches(o, filter) && (filter !== 'archive' || searchHit(o)); });
     if (!shown.length) { list.appendChild(emptyArt(adminOrders.length ? 'В этом разделе пока пусто.' : 'Заказов пока нет. Отправьте клиентам ссылку на сайт.')); return; }
     shown.forEach(function (o) { list.appendChild(adminCard(o)); });
   }
   function replaceOrder(o) { adminOrders = adminOrders.map(function (x) { return x.id === o.id ? o : x; }); renderAdmin(); }
 
   function adminCard(o) {
+    if (o.archived) return archiveCard(o);
+    var c = adminCardMain(o), body = c.querySelector('.body');
+    if (o.editedAt && !o.quoted && !o.accepted) body.insertBefore(el('div', 'edited', 'Клиент изменил заказ ' + dateRu(o.editedAt) + ' — сделайте расчёт заново'), body.children[1]);
+    var act = el('div', 'row-actions');
+    act.appendChild(histButton(o, body));
+    var ar = el('button', 'btn ghost small', 'В архив'); ar.type = 'button';
+    ar.onclick = function () { ar.disabled = true; call('adminArchive', KEY, o.id, true).then(function (n) { toast('Заказ в архиве'); replaceOrder(n); }, function (e) { toast(e.message); ar.disabled = false; }); };
+    act.appendChild(ar);
+    body.appendChild(act);
+    return c;
+  }
+
+  function histButton(o, body) {
+    var hb = el('button', 'btn ghost small', 'История заказа'); hb.type = 'button'; var shown = null;
+    hb.onclick = function () {
+      if (shown) { shown.remove(); shown = null; hb.textContent = 'История заказа'; return; }
+      hb.disabled = true;
+      call('adminHistory', KEY, o.id).then(function (list) {
+        shown = el('div', 'hist');
+        if (!list.length) shown.appendChild(el('div', '', 'Записей пока нет'));
+        list.forEach(function (h) { var d = el('div'); d.appendChild(el('small', '', h.at)); d.appendChild(el('span', '', h.event + (h.details ? ': ' + h.details : ''))); shown.appendChild(d); });
+        body.appendChild(shown); hb.textContent = 'Скрыть историю';
+      }, function (e) { toast(e.message); }).then(function () { hb.disabled = false; });
+    };
+    return hb;
+  }
+
+  function receiptText(o) {
+    var c = orderCalc(o), d = delivOf(o.delivery), lines = [];
+    lines.push('Заказ ' + o.id + ' от ' + dateRu(o.createdAt));
+    if (o.firstName || o.phone) lines.push('Покупатель: ' + (o.firstName + ' ' + o.lastName).trim() + (o.phone ? ', ' + o.phone : ''));
+    if (o.comment) lines.push('Комментарий: ' + o.comment);
+    if (c.lines.length) {
+      lines.push('Товары:');
+      c.lines.forEach(function (l) { lines.push(l.n + ') ' + (l.na ? 'нет в наличии' : fmt(l.price) + ' ₩' + (l.discount ? ' − скидка ' + fmt(l.discount) + ' ₩' : ''))); });
+      lines.push('Услуги ' + fmt(c.fee, 1) + '%: ' + fmt(c.feeAmt) + ' ₩');
+      lines.push('Итого: ' + fmt(c.totalKrw) + ' ₩ × ' + fmt(c.rate, 4) + ' = ' + fmt(c.totalKzt) + ' тг');
+    }
+    lines.push('Доставка: ' + d.title + (o.pickup ? ', ' + o.pickup : '') + (o.cargoPay ? ', оплата ' + (o.cargoPay === 'onReceipt' ? 'при получении' : 'сразу') : '') + (d.extra ? ' (оплачивается отдельно)' : ''));
+    if (o.accepted) lines.push('Подтверждено клиентом: ' + dateRu(o.acceptedAt) + '. Счёт на сумму ' + fmt(o.totalKzt) + ' тг выставлен в Kaspi на номер ' + o.phone + '.');
+    lines.push('Статус: ' + (STATUS[o.status] || o.status));
+    return lines.join('\n');
+  }
+
+  function archiveCard(o) {
+    var c = el('article', 'card order');
+    c.appendChild(gallery(o));
+    var b = el('div', 'body'); c.appendChild(b);
+    var top = el('div', 'top'), l = el('div');
+    l.appendChild(el('div', 'num', 'Заказ ' + o.id + ((o.firstName || o.lastName) ? ' · ' + (o.firstName + ' ' + o.lastName).trim() : '')));
+    l.appendChild(el('div', 'date', dateRu(o.createdAt) + (o.phone ? ' · ' + o.phone : '')));
+    top.appendChild(l); top.appendChild(el('span', 'pill archived-badge', 'В архиве'));
+    b.appendChild(top);
+    if (o.comment) b.appendChild(el('div', 'comment', o.comment));
+    b.appendChild(delivLine(o));
+    if (o.quoted) b.appendChild(billNode(orderCalc(o), o.delivery));
+    var act = el('div', 'row-actions');
+    var cp = el('button', 'btn small', 'Скопировать чек для клиента'); cp.type = 'button'; cp.onclick = function () { copy(receiptText(o)); };
+    act.appendChild(cp);
+    act.appendChild(histButton(o, b));
+    var back = el('button', 'btn ghost small', 'Вернуть из архива'); back.type = 'button';
+    back.onclick = function () { back.disabled = true; call('adminArchive', KEY, o.id, false).then(function (n) { toast('Заказ возвращён'); replaceOrder(n); }, function (e) { toast(e.message); back.disabled = false; }); };
+    act.appendChild(back);
+    b.appendChild(act);
+    return c;
+  }
+
+  function adminCardMain(o) {
     var c = el('article', 'card order');
     c.appendChild(gallery(o));
     var b = el('div', 'body'); c.appendChild(b);
@@ -1083,8 +1286,8 @@ header.hero .brand, header.hero .admin-badge + .lang + .brand { padding-right: 1
     var box = $('summary'); if (!box) return; box.textContent = '';
     var now = new Date(), earned = 0;
     adminOrders.forEach(function (o) { if (o.accepted && inPeriod(o, 'month')) earned += profit(o).kzt; });
-    var news = adminOrders.filter(function (o) { return o.status === 'new' && !o.quoted; }).length;
-    var waiting = adminOrders.filter(function (o) { return o.quoted && !o.accepted; }).length;
+    var news = adminOrders.filter(function (o) { return !o.archived && o.status === 'new' && !o.quoted; }).length;
+    var waiting = adminOrders.filter(function (o) { return !o.archived && o.quoted && !o.accepted; }).length;
     box.appendChild(tile('Новые', String(news), 'ждут ответа', news ? 'hot' : ''));
     box.appendChild(tile('Ждут клиента', String(waiting), 'расчёт отправлен'));
     box.appendChild(tile('В ' + MONTHS_FULL[now.getMonth()], tg(earned), 'заработано'));
@@ -1200,15 +1403,20 @@ header.hero .brand, header.hero .admin-badge + .lang + .brand { padding-right: 1
     });
     orders.forEach(fill);
     function fill(o) { o.photoCount = (o.photos || []).length; if (o.quoted) { o.rate = rate.rate; var c = calcItems(itemsOf(o), o.feePct, rate.rate); o.totalKrw = c.totalKrw; o.totalKzt = c.totalKzt; } o.accepted = !!o.acceptedAt; }
+    function hist(o, e, d) { (o.history = o.history || []).push({ at: new Date().toLocaleString('ru-RU'), event: e, details: d }); }
     function pub(o) { var c = {}; Object.keys(o).forEach(function (k) { if (k !== 'photos') c[k] = o[k]; }); return c; }
     function ok(v) { return new Promise(function (r) { setTimeout(function () { r(JSON.parse(JSON.stringify(v))); }, 250); }); }
     function find(id) { return orders.filter(function (o) { return o.id === id; })[0]; }
     return {
-      getInfo: function (key) { return ok({ stores: [['Olive Young', '올리브영 · косметика', '올리브영 · косметика'], ['Medicube', '메디큐브 · уход', '메디큐브 · күтім'], ['Musinsa', '무신사 · одежда', '무신사 · киім'], ['Coupang', '쿠팡 · всё подряд', '쿠팡 · бәрі бар'], ['Daiso', '다이소 · мелочи', '다이소 · ұсақ-түйек'], ['Gmarket', 'G마켓 · маркетплейс', 'G마켓 · маркетплейс'], ['29CM', 'одежда и дизайн', 'киім және дизайн'], ['Innisfree', '이니스프리 · косметика', '이니스프리 · косметика'], ['Ably', '에이블리 · одежда', '에이블리 · киім']], deliveries: DELIV_DEFAULT, shopKk: 'Кореядан тапсырыстар', paymentNoteKk: 'Мен ЖК ретінде жұмыс істеймін, сондықтан төлем шот арқылы жүреді: ол сіз көрсеткен телефон нөміріне келеді.', timingKk: 'Есепті бір күн ішінде жіберемін. «Өзім әкелемін» жеткізуімен тапсырыстар — желтоқсанның соңына қарай.', supportLabelKk: 'Instagram-дағы қолдау қызметі', seller: 'Айя', instagram: 'tttoka_', supportLabel: 'служба поддержки в Instagram', timing: 'Расчёт пришлю в течение дня. Заказы с доставкой «привезу сама» — к концу декабря.', shop: 'Заказы из Кореи', paymentNote: 'Я работаю как ИП, поэтому оплата проходит по счёту: он придёт на номер телефона, который вы укажете.', rate: rate, url: '', admin: key === 'demo' }); },
-      submitOrder: function (d) { var o = { id: 'Z1109-' + Math.floor(1000 + Math.random() * 9000), token: 't' + Math.random().toString(36).slice(2), createdAt: new Date().toISOString(), comment: d.comment, contact: d.contact, delivery: d.delivery, status: 'new', quoted: false, photos: d.photos }; fill(o); orders.unshift(o); return ok({ id: o.id, token: o.token }); },
+      getInfo: function (key) { return ok({ stores: [['Olive Young', '올리브영 · косметика', '올리브영 · косметика'], ['Medicube', '메디큐브 · уход', '메디큐브 · күтім'], ['Musinsa', '무신사 · одежда', '무신사 · киім'], ['Coupang', '쿠팡 · всё подряд', '쿠팡 · бәрі бар'], ['Daiso', '다이소 · мелочи', '다이소 · ұсақ-түйек'], ['Gmarket', 'G마켓 · маркетплейс', 'G마켓 · маркетплейс'], ['29CM', 'одежда и дизайн', 'киім және дизайн'], ['Innisfree', '이니스프리 · косметика', '이니스프리 · косметика'], ['Ably', '에이블리 · одежда', '에이블리 · киім']], deliveries: DELIV_DEFAULT, shopKk: 'Кореядан тапсырыстар', paymentNoteKk: 'Мен ЖК ретінде жұмыс істеймін. Төлем шоты сіз көрсеткен телефон нөміріне Kaspi-ге келеді.', timingKk: 'Есепті бір күн ішінде жіберемін. «Өзім әкелемін» жеткізуімен тапсырыстар — желтоқсанның соңына қарай.', supportLabelKk: 'Instagram-дағы қолдау қызметі', seller: 'Айя', instagram: 'tttoka_', supportLabel: 'служба поддержки в Instagram', timing: 'Расчёт пришлю в течение дня. Заказы с доставкой «привезу сама» — к концу декабря.', shop: 'Заказы из Кореи', paymentNote: 'Я работаю как ИП. Счёт на оплату придёт в Kaspi на номер телефона, который вы укажете.', rate: rate, url: '', admin: key === 'demo' }); },
+      submitOrder: function (d) { var o = { id: 'Z1109-' + Math.floor(1000 + Math.random() * 9000), token: 't' + Math.random().toString(36).slice(2), createdAt: new Date().toISOString(), comment: d.comment, contact: d.contact, delivery: d.delivery, pickup: d.pickup || '', cargoPay: d.cargoPay || '', status: 'new', quoted: false, photos: d.photos }; fill(o); orders.unshift(o); return ok({ id: o.id, token: o.token }); },
       getMyOrders: function (t) { return ok(orders.filter(function (o) { return t.indexOf(o.token) >= 0; }).map(pub)); },
       getPhoto: function (id, i) { return ok(find(id).photos[i || 0]); },
-      acceptOrder: function (t, f, l, p, dv) { var o = orders.filter(function (x) { return x.token === t; })[0]; if (dv) o.delivery = dv; o.firstName = f; o.lastName = l; o.phone = '+' + p.replace(/\D/g, ''); o.acceptedAt = new Date().toISOString(); fill(o); return ok(pub(o)); },
+      acceptOrder: function (tk, f, l, p, dv, ex) { var o = orders.filter(function (x) { return x.token === tk; })[0]; if (dv) { o.delivery = dv; o.pickup = (ex && ex.pickup) || ''; o.cargoPay = (ex && ex.cargoPay) || ''; } o.firstName = f; o.lastName = l; o.phone = '+' + p.replace(/\D/g, ''); o.acceptedAt = new Date().toISOString(); fill(o); return ok(pub(o)); },
+      clientEditOrder: function (tk, d) { var o = orders.filter(function (x) { return x.token === tk; })[0]; o.photos = o.photos.filter(function (p, i) { return d.remove.indexOf(i) < 0; }).concat(d.photos); o.comment = d.comment; o.quoted = false; o.items = []; o.status = 'new'; o.editedAt = new Date().toISOString(); hist(o, 'Клиент изменил заказ', ''); fill(o); return ok(pub(o)); },
+      adminArchive: function (k, id, a) { var o = find(id); o.archived = !!a; hist(o, a ? 'Перенесён в архив' : 'Возвращён из архива', ''); return ok(pub(o)); },
+      adminArchiveDone: function () { var n = 0; orders.forEach(function (o) { if (!o.archived && ((o.acceptedAt && o.status === 'bought') || o.status === 'na')) { o.archived = true; n++; } }); return ok(n); },
+      adminHistory: function (k, id) { return ok(find(id).history || [{ at: '2026-11-08 10:31', event: 'Новый заказ', details: 'демо' }]); },
       adminList: function () { return ok(orders.map(pub)); },
       adminSetStatus: function (k, id, s) { var o = find(id); o.status = s; return ok(pub(o)); },
       adminSetPrice: function (k, id, p) { var o = find(id); if (!p.items.some(function (x) { return !x.na && x.priceKrw > 0; })) return Promise.reject(new Error('Укажите цену хотя бы одного товара')); o.items = p.items; o.feePct = p.feePct; o.quoted = true; fill(o); return ok(pub(o)); },
